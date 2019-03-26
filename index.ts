@@ -1,8 +1,7 @@
-/* tslint:disable */
 
-const Alexa = require('ask-sdk-core');
+const alexa = require('ask-sdk-core');
 
-const WelcomeIntentHandler = {
+const welcomeIntentHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
       && handlerInput.requestEnvelope.request.intent.name === 'WelcomeIntent';
@@ -17,7 +16,7 @@ const WelcomeIntentHandler = {
   },
 };
 
-const GoodByeIntentHandler = {
+const goodByeIntentHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
       && handlerInput.requestEnvelope.request.intent.name === 'GoodByeIntent';
@@ -32,7 +31,7 @@ const GoodByeIntentHandler = {
   },
 };
 
-const HelpIntentHandler = {
+const helpIntentHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
       && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.HelpIntent';
@@ -48,7 +47,7 @@ const HelpIntentHandler = {
   },
 };
 
-const CancelAndStopIntentHandler = {
+const cancelAndStopIntentHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
       && (handlerInput.requestEnvelope.request.intent.name === 'AMAZON.CancelIntent'
@@ -64,7 +63,7 @@ const CancelAndStopIntentHandler = {
   },
 };
 
-const SessionEndedRequestHandler = {
+const sessionEndedRequestHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'SessionEndedRequest';
   },
@@ -75,7 +74,7 @@ const SessionEndedRequestHandler = {
   },
 };
 
-const ErrorHandler = {
+const errorHandler = {
   canHandle() {
     return true;
   },
@@ -89,15 +88,15 @@ const ErrorHandler = {
   },
 };
 
-const skillBuilder = Alexa.SkillBuilders.custom();
+const skillBuilder = alexa.SkillBuilders.custom();
 
 exports.handler = skillBuilder
   .addRequestHandlers(
-    WelcomeIntentHandler,
-    GoodByeIntentHandler,
-    HelpIntentHandler,
-    CancelAndStopIntentHandler,
-    SessionEndedRequestHandler
+    welcomeIntentHandler,
+    goodByeIntentHandler,
+    helpIntentHandler,
+    cancelAndStopIntentHandler,
+    sessionEndedRequestHandler,
   )
-  .addErrorHandlers(ErrorHandler)
+  .addErrorHandlers(errorHandler)
   .lambda();

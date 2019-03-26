@@ -1,0 +1,50 @@
+service: wac-alexa
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: eu-west-1
+  stage: staging
+  versionFunctions: false
+  memorySize: 256
+  timeout: 30
+  stackTags:
+    Company: ${self:custom.company}
+
+  environment:
+    EMAIL_REGION: "eu-west-1"
+    PREFIX: ${self:custom.prefix}
+    REGION: ${self:provider.region}
+
+plugins:
+  - serverless-offline
+  - serverless-webpack
+
+custom:
+  stage: ${opt:stage}
+  company: tomAlexa
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+  prefix: ${self:service}-${self:custom.stage}
+
+functions:
+  alexaFunction:
+    handler: index.handler
+    events:
+      - alexaSkill: amzn1.ask.skill.fde3..........
+
+package:
+  exclude:
+    - .vscode/**
+    - .idea/**
+    - dist/**
+    - node_modules/.cache/**
+    - node_modules/aws-sdk/dist/aws-sdk-react-native.js
+    - tslint.json
+    - tsconfig.json
+    - package.json
+    - package-lock.json
+    - README.md
+    - .gitignore
+    - webpack.config.js

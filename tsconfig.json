@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "suppressImplicitAnyIndexErrors": true,
+    "module": "esNext",
+    "moduleResolution": "node",
+    "target": "es6",
+    "allowJs": true,
+    "sourceMap": true,
+    "lib": [
+      "es5",
+      "es6",
+      "dom",
+      "es2015",
+      "esnext.asynciterable",
+      "es2017.object"
+    ],
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "~/*": [
+        "./*"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules/*",
+    "*.js"
+  ]
+}
